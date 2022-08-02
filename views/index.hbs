@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelling around the World!</title>
+    <!--swiperjs.com cdnlink-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <!--Google font link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <!--Font awesome cdn link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!--bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"crossorigin="anonymous">
+    <style>
+        #logout-btn{
+            color: #fff;
+            background-color: #fff;
+        }
+        .dynamicname{
+            color: white;
+            font-size: 2rem;
+            margin-top: 2px;
+        }
+        *{
+    font-family: 'Roboto', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+}
+
+html{
+    font-size: 65%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+
+}
+
+header{
+    position: fixed;
+    height: 6rem;
+    top: 0;left: 0; right:0;
+    background: rgb(32, 30, 30);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+
+}
+section{
+    padding: 4rem 8% 2rem 8%;
+}
+.heading{
+    text-align: center;
+    padding:1rem 0 2rem 0;
+}
+.heading span{
+    font-size: 2.6rem;
+    margin: .3rem;
+    border-radius: .3rem ;
+    border: .1rem solid rgb(230, 172, 66);
+    color: rgb(230, 172, 66);
+    background: rgb(223, 202, 164);
+    padding: .3rem 1rem;
+}
+.heading span.space{
+    background: none;
+    border: none;
+}
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    background: rgb(236, 176, 126);
+    color: #fff;
+    padding: .6rem 3rem;
+    border: .2rem solid rgb(248, 189, 167) ;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.btn:hover{
+    background: rgb(226, 211, 211);
+    color: rgb(240, 140, 58);
+}
+
+header .logo{
+    font-size: 1.7rem;
+    color: aliceblue;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+header .logo span{
+    color: rgb(199, 84, 43);
+    font-size: 3rem;
+}
+
+
+header .navbar a{
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: aliceblue;
+    margin: 0.8rem;
+}
+header .navbar a:hover{
+    color : rgb(240, 140, 58);
+}
+
+header .icons i{
+    font-size: 1.8rem;
+    color: aliceblue;
+    cursor: pointer;
+    margin-right: 1.5rem;
+}
+header .icons i:hover{
+    color : rgb(240, 140, 58);
+}
+header .search-bar-container{
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 1.5rem 2rem;
+    background: rgb(75, 72, 72);
+    border-top: 0.1rem solid rgb(62, 90, 62);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+header .search-bar-container.active{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+header .search-bar-container #search-bar{
+    width: 100%;
+    height: 2.5rem;
+    padding: 1rem;
+    border-radius: .3rem;
+    text-transform: none;
+    color: gray;
+    font-size: 1.5rem;
+}
+header .search-bar-container label{
+    color: aliceblue;
+    cursor: pointer;
+    font-size: 2rem;
+    margin-left: 1.5rem;
+}
+header .search-bar-container label:hover{
+    color : rgb(240, 140, 58);   
+}
+
+body{
+    height: 200rem;
+}
+
+.login-form-container{
+    position: fixed;
+    top: -140%;left: 0;
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+    z-index: 10000;
+    background-color:rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+.login-form-container.active{
+    top:0;
+}
+
+.login-form-container form{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    width: 50rem;
+}
+.login-form-container form h3{
+    font-size: 3rem;;
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem;
+}
+.login-form-container form .box{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    border: .2rem solid rgba(0, 0, 0, 0.3);
+    margin: 0.4rem 0;
+    text-transform: none;
+}
+.login-form-container form .box:focus{
+    border-color: rgb(236, 212, 176);
+    background-color: rgb(248, 240, 229);
+}
+.login-form-container form #remember{
+    margin: 2rem 0;
+}
+.login-form-container form label{
+    font-size: 1.2rem;
+}
+.login-form-container form .btn{
+    display: block;
+    width: 100%;
+}
+.login-form-container form p{
+    padding: .3rem 0;
+    font-size: 1.2rem;
+    color: #666;
+}
+.login-form-container form a{
+    color: black;
+    
+    cursor: pointer;
+}
+.login-form-container form a:hover{
+    color: orange;
+    text-decoration: underline;
+}
+
+.login-form-container #form-close{
+    position: absolute;
+    top: 3rem; right: 5rem;
+    font-size: 4rem;
+    color: #fff;
+    cursor: pointer;
+}
+.register-form-container{
+    position: fixed;
+    top: -180%;left: 0;
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+    z-index: 10000;
+    background-color:rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+.register-form-container.active{
+    top:0;
+}
+.register-form-container form{
+    width: 50rem;
+}
+.register-form-container form .box{
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.5rem;
+    color: #333;
+    border: .2rem solid rgba(0, 0, 0, 0.3);
+    margin: .5rem;
+    border-radius: .5rem;
+    
+}
+.register-form-container form .btn{
+    margin-left: 17rem;
+}
+
+#menu-bar{
+    color: #fff;
+    border: .1rem solid white;
+    border-radius: .5rem;
+    font-size: 2rem;
+    padding: .5rem 1.2rem;
+    cursor: pointer;
+}
+.home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    position: relative;
+    z-index: 0;
+}
+.home .content{
+    padding: 15rem;
+    text-align: center;
+}
+.home .content h3{
+    font-size: 4rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow:0 .4rem  .5rem rgba(0,0,0,.1);
+}
+.home .content p{
+    font-size: 2rem;
+    color:#fff;
+    padding: .5rem 0;
+    text-shadow:0  .2rem  .5rem rgba(0,0,0,.1);
+}
+.home .video-container video{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: -1;
+    height: 100%;
+    object-fit: cover;
+}
+.home .controls{
+    padding: .6rem;
+    border-radius: 3rem;
+    background: rgba(0,0,0,.7);
+    position: relative;
+    
+}
+.home .controls .vid-btn{
+    height: 2rem; width: 2rem;
+    display: inline-block;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    margin:0 .2rem;
+    
+}
+.home .controls .vid-btn.active{
+    background: orange;
+}
+.book .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items:center;
+}
+.book .row .image{
+    flex: 1 1 20rem;
+}
+.book .row .image img{
+    width: 100%;
+    margin-left: 0;
+}
+.book .row form{
+    flex: 1 1 20rem;
+    padding: 2rem;
+    box-shadow:  0 1rem 2rem rgba(0,0,0,.1);
+    border-radius: .5rem;
+}
+.book .row form .inputbox{
+    padding: .8rem 0;
+}
+.book .row form .inputbox input{
+    width: 100%;
+    font-size: 1.3rem;
+    border: .1rem solid rgb(82, 76, 76);
+    color: #333;
+    height:3rem;
+    text-transform: none;
+}
+.book .row form .inputbox h3{
+    padding: .5rem;
+    font-size: 1.5rem;
+}
+.packages .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.packages .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow:0 1rem 2rem rgba(0,0,0,.1);
+}
+.packages .box-container .box img{
+    height: 25rem;
+    width: 100%;
+    object-fit: cover;
+}
+.packages .box-container .box .content{
+    padding: 2rem;
+}
+.packages .box-container .box .content h3{
+    font-size: 1.5rem;
+}
+.packages .box-container .box .content h3 i{
+    color: coral;
+    padding-right: .7rem;
+}
+.packages .box-container .box .content p{
+    font-size: 1.2rem;
+    padding: .5rem 0;
+}
+.packages .box-container .box .content .stars i{
+    font-size: 1.5rem;
+    padding-bottom: .5rem;
+
+}
+.packages .box-container .box .content .price{
+    font-size: 1.3rem;
+    padding-top: .3rem;
+    color: chocolate;
+}
+.packages .box-container .box .content .price span{
+    font-size: 1.1rem;
+    text-decoration: line-through;
+    color: black;
+    padding-left: .4rem;
+}
+.services .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.services .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    padding: 3rem;
+    margin: 1.5rem;
+    text-align: center;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+}
+.services .box-container .box:hover{
+    box-shadow:0 1rem 2rem rgb(124, 119, 119);
+} 
+.services .box-container .box h3{
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.services .box-container .box i{
+    color: orange;
+    font-size: 3rem;
+}
+.services .box-container .box p{
+    font-size: 1.3rem;
+}
+.gallery .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 2rem;
+}
+.gallery .box-container .box{
+    flex: 1 1 20rem;
+    border-radius: .8rem;
+    border:.2rem solid #fff;
+    overflow: hidden;
+    box-shadow:0 1rem 2rem rgba(0,0,0,.1);
+    height: 22rem;
+    position: relative;
+}
+.gallery .box-container .box img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+.gallery .box-container .box .content{
+    position: absolute;
+    top: -100%; left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    padding-top: 5rem;
+    color: #fff;
+}
+{{!-- .gallery .box-container .box:hover .content{
+    top: 0;
+} --}}
+
+.gallery .box-container .box .content h3{
+    font-size: 1.5rem;
+    color: rgb(241, 192, 100);
+    padding-bottom: .2rem;
+}
+.review .slider{
+    padding-bottom:2rem ;
+
+}
+.review .box{
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border-radius: .5rem;
+    padding-top: 4rem;
+}
+.review .box img{
+    height: 13rem;
+    width: 13rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+.review .box h3{
+    color: orange;
+    font-size: 1.5rem;
+}
+.review .box p{
+    font-size: 1.2rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.review .box .stars{
+    font-size: 1.8rem;
+}
+.contact .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    width: 50%;
+    margin-left: 25rem;
+}
+
+.contact .row form{
+    flex: 1 1 50rem;
+    align-items: center;
+    padding: 2rem;
+    box-shadow :0 1rem 2rem rgba(0,0,0,.1);
+}
+.contact .row form .inputbox{
+    padding: 1rem;
+    margin: 1rem;
+}
+.contact .row form .inputbox .inp{
+    box-shadow :0 1rem 2rem rgba(0,0,0,.1);
+    padding: 1rem;
+}
+.contact .row form .inputbox #contact-id{
+    margin-left: 6rem;
+}
+.contact .row form .inputbox .class-btn{
+    margin-left: 11rem;
+    margin-top: .8rem;
+}
+
+
+
+
+
+
+
+
+/* media query */
+
+@media (max-width:1200px){
+    html{
+        font-size: 55%;
+    }
+}
+
+@media (max-width:990px){
+    header{
+        padding: 2rem;
+    }
+    section{
+        padding: 2rem;
+    }
+}
+
+@media (max-width:760px){
+    #menu-bar{
+        display: initial;
+    }
+    header .navbar{
+        position: absolute;
+        top: 100%; right: 0; left: 0;
+        background: #333;
+        border-top: .1rem solid #333;
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0,100% 0,100% 0,0 0);
+    }
+    header .navbar.active{
+        clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+    }
+
+    header .navbar a{
+        display: block;
+        border-radius: .5rem;
+        padding: 1rem;
+        margin: 1rem 0;
+        background: rgb(22, 14, 14);
+    }
+}
+@media (max-width:450px){
+    html{
+        font-size: 50%;
+    }
+    .heading span{
+        font-size: 2rem;
+    }
+}
+
+
+#afterlogin{
+    margin-top: 5rem;
+    z-index: 1;
+}
+
+    </style>
+</head>
+
+<body>
+    <!--Header section-->
+    <header>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <a href="" class="logo"><span>Explore </span>The World</a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#book">Book</a>
+            <a href="#packages">Packages</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#review">Review</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+            <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+        {{#if name}}
+        <p class="dynamicname" id="dname">Welcome {{name}}</p>
+        {{/if}}
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+
+                 
+    <!--login form-->
+    <div class="login-form-container">
+
+        <i class="fas fa-times" id="form-close"></i>
+        <form action="login" method="POST">
+            <h3>Login</h3>
+            <input type="email" class="box" placeholder="enter your email" name="email">
+            <input type="password" class="box" placeholder="enter password" name="password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget pasword? <a href="#">click here</a></p>
+            <p>don't have an account? <a id="register-btn" href="#">register here</a></p>
+
+        </form>
+    </div>
+
+
+
+
+    <!--Register Form-->
+    <div class="register-form-container">
+
+        <i class="fas fa-times" id="form-close"></i>
+        <form  action="register" method="POST">
+            <h3>Login</h3>
+            <input type="text" class="box" placeholder="enter your name" name="name">
+            <input type="text" class="box" placeholder="enter mobile number" name="mobile">
+            <input type="email" class="box" placeholder="enter your email" name="email">
+            <input type="password" class="box" placeholder="create password" name="password">
+            <input type="password" class="box" placeholder="confirm password" name="cpassword">
+            <input type="submit" value="Register now" class="btn">
+        </form>
+    </div>
+
+    <!--Home section -->
+    <section class="home" id="home">
+        <div class="content">
+            <h3>Adventure is worthwhile</h3>
+            <p>discover new places with us!!</p>
+            {{!-- <a href="#" class="btn">discover more</a> --}}
+        </div>
+
+        <div class="controls">
+            <span class="vid-btn active" data-src="images/vid-3.mp4"></span>
+            <span class="vid-btn" data-src="images/vid-6.mp4"></span>
+            <span class="vid-btn" data-src="images/vid-7.mp4"></span>
+            <span class="vid-btn" data-src="images/vid-8.mp4"></span>
+            <span class="vid-btn" data-src="images/vid-9.mp4"></span>
+        </div>
+        <div class="video-container">
+            <video src="images/vid-3.mp4" id="video-slider" loop autoplay muted></video>
+        </div>
+    </section>
+
+    <!--Book section start-->
+    <section class="book" id="book">
+        <h1 class="heading">
+            <span>b</span>
+            <span>o</span>
+            <span>o</span>
+            <span>k</span>
+            <span class="space"></span>
+            <span>n</span>
+            <span>o</span>
+            <span>w</span>
+        </h1>
+        <div class="row">
+            <div class="image">
+                <img src="images/book-img.svg" alt="">
+            </div>
+            <form action="/book" method="POST">
+                <div class="inputbox">
+                    <h3>Where to</h3>
+                    <input type="text" 
+                    name="where_to"
+                    id="whereto"
+                    placeholder="place name">
+                </div>
+                <div class="inputbox">
+                    <h3>How many</h3>
+                    <input type="number" 
+                    name="how_many"
+                    placeholder="number of guests">
+                </div>
+                <div class="inputbox">
+                    <h3>Arrivals</h3>
+                    <input type="date" name="arraivlas">
+                </div>
+                <div class="inputbox">
+                    <h3>Leaving</h3>
+                    <input type="date" name="leaving">
+                </div>
+                 {{#if book}}
+    
+   <input type="submit" class="btn"  value="Book Now">
+    {{else}}
+     <input type="submit" class="btn" disabled value="Book Now">
+    {{/if}}
+                {{!-- <input type="submit" class="btn" disabled value="Book Now"> --}}
+            </form>
+        </div>
+    </section>
+
+    <!--Package section -->
+    <section class="packages" id="packages">
+        <h1 class="heading">
+            <span>p</span>
+            <span>a</span>
+            <span>c</span>
+            <span>k</span>
+            <span>a</span>
+            <span>g</span>
+            <span>e</span>
+            <span>s</span>
+        </h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="images/p-3.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt" ></i >Sydeny</h3>
+                    <p>Sydney the oldest, biggest, and most beautiful of all Australian cities, lies amid a seductive intermingling of land and sea. Glide along the glittering harbor on a ferry, see the white sails of the Opera House gleaming in the sunshine, admire the graceful arch of the Harbour Bridge, and you'll see why this is one of the world's top cities.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $125.00 <span>$145.00</span></div>
+                    <a href="#book" onclick="booknow('sydeny')" class="btn">book now</a>
+                    
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/p-1.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i>Mumbai</h3>
+                    <p>What is Mumbai like for tourists?
+Mumbai is a vibrant and cosmopolitan city, an excellent destination for visitors to get an authentic insight into the Indian way of life. Mumbai has much to offer tourists, from renowned restaurants and luxury hotels to countless cultural and natural attractions.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> $75.00 <span>$100.00</span></div>
+                    <a href="#book" onclick="booknow('Mumbai')" class="btn">book now</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/p-5.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i>Tokyo</h3>
+                    <p>When it comes to the greatest cities in the world, you cannot do better than Tokyo. A juxtaposition of deep tradition and fast-paced, modern energy, Tokyo, the capital city of Japan, is one of the best places to visit in Asia. It is home to the Imperial Palace and the seat of Government and Parliament, as well as luxury hotels, Michelin-starred restaurants, and fantastic shopping. Located in East-Central Honshu, the largest of Japan's main islands, this heavily populated city serves as a great base from which to explore other parts of the country.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $145.00 <span>$160.00</span></div>
+                    <a href="#book" onclick="booknow('Tokyo')" class="btn">book now</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/p-6.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i>Egypt</h3>
+                    <p>Egypt is famous for its ancient civilization and some of the world’s most famous monuments, including the Giza pyramids, the Great Sphinx and the ancient temples of Luxor dating back thousands of years. Although focus of most tourist visits remains the great monuments along the Nile, possibilities for Egyptian travel also includes snorkeling and diving along the Red Sea coast. Other tourist attractions in Egypt include camel trips into the mountains of Sinai, tours to remote oases or visits to the Coptic monasteries of the Eastern Desert.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> 115.00 <span>$130.00</span></div>
+                    <a href="#book" onclick="booknow('Egypt')" class="btn">book now</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/london_img.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i>London</h3>
+                    <p>London is one of the world's most mesmerizing cities. Modern architectural marvels like the Shard line ancient laneways peppered with historic monuments, high-end shops, and award-winning theaters. The picturesque streets wind their way around renowned attractions like Buckingham Palace, Westminster Abbey, and St. Paul's Cathedral, causing visitors to gape at their beauty and exhaust their phone's photo storage.p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> 183.00 <span>$195.00</span></div>
+                    <a href="#book" onclick="booknow('London')" class="btn">book now</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/moscow_img.webp" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i>Moscow</h3>
+                    <p>The capital of Russia is an incredible place to explore. Visitors to Moscow come away spellbound at all the amazing sights, impressed at the sheer size and grandeur of the city. Lying at the heart of Moscow, the Red Square and the Kremlin are just two of the must-see tourist attractions; they are the historical, political and spiritual heart of the city – and indeed Russia itsel.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> 198.00 <span>$215.00</span></div>
+                    <a href="#book" onclick="booknow('Moscow')" class="btn">book now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--serivices section-->
+    <section class="services" id="services">
+        <h1 class="heading">
+            <span>s</span>
+            <span>e</span>
+            <span>r</span>
+            <span>v</span>
+            <span>i</span>
+            <span>c</span>
+            <span>e</span>
+            <span>s</span>
+        </h1>
+        <div class="box-container">
+
+            <div class="box">
+                <i class="fas fa-hotel"></i>
+                <h3>affordable hotels</h3>
+                <p>affordable hotels also included in the packages itself or you can take is as your own choice, hotels are available from low budget to high budget !</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-utensils"></i>
+                <h3>food and drinks</h3>
+                <p>High quality food with hygiene is provide to the traveller. Also it include breakfast, lunch, dinner and if you want anything other than this then you have to order it.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-bullhorn"></i>
+                <h3>safty guide</h3>
+                <p>The travel agency will take care of the safety of all travelers during the entire trip, and will be responsible for its own luggage.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-globe-asia"></i>
+                <h3>around the world</h3>
+                <p>It can provide outdoor recreation activities, airlines, car rentals, cruise lines, hotels, railways, travel insurance, package tours, insurance, guide books, VIP airport lounge access, arranging logistics for luggage and medical items delivery for travellers upon request, public transport timetables etc..</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-plane"></i>
+                <h3>fastest travel</h3>
+                <p>Tour is going on with given shedule their is to delay in the shedule during the whole journey. fatest travel services are provides like plane etc.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-hiking"></i>
+                <h3>adventure</h3>
+                <p>Adventure is all about taking each experience, regardless if you know the outcome or not and facing it head-on. </p>
+            </div>
+        </div>
+    </section>
+
+    <!--gallary section-->
+    <section class="gallery" id="gallery">
+        <h1 class="heading">
+            <span>g</span>
+            <span>a</span>
+            <span>l</span>
+            <span>l</span>
+            <span>e</span>
+            <span>r</span>
+            <span>y</span>
+        </h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="images/g-3.jpg" alt="">
+                <div class="content">
+                    <h3>beautiful places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-1.jpg" alt="">
+                <div class="content">
+                    <h3>amazing places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-2.jpg" alt="">
+                <div class="content">
+                    <h3>beautiful places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-5.jpg" alt="">
+                <div class="content">
+                    <h3>amazing places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-6.jpg" alt="">
+                <div class="content">
+                    <h3>beautiful places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-7.jpg" alt="">
+                <div class="content">
+                    <h3>amazing places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-9.jpg" alt="">
+                <div class="content">
+                    <h3>beautiful places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-8.jpg" alt="">
+                <div class="content">
+                    <h3>beautiful places</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fugiat id natus exercitationem odit eius, aliquid fugit non temporibus provident.</p>
+                    {{!-- <a href="#" class="btn">See More</a> --}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--review section-->
+    <section class="review" id="review">
+        <h1 class="heading">
+            <span>r</span>
+            <span>e</span>
+            <span>v</span>
+            <span>i</span>
+            <span>e</span>
+            <span>w</span>
+        </h1>
+        <div class="swiper-container review-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic1.png"  alt="">
+                        <h3>kalyani satav</h3>
+                        <p>Fantastic Arrangements !! 
+Thank you fir such a wonderful vacation. We enjoyed a lot. You satisfied us a lot with lots of fun. Hope for your great success dear.</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic2.png"  alt="">
+                        <h3>Arnav jain</h3>
+                        <p>I am just back from my trip from Moscow with my mom with assistance from Chetna from Road to Trips. Awesome arrangements and everything went smoothly.</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic3.png"  alt="">
+                        <h3>vaishanvi pachpatil</h3>
+                        <p>Lovely Experience !!!
+The arrangements were great. Everything was awesome. This package was one of the reasons why I liked this trip so much. Thank you for that.</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic4.png"  alt="">
+                        <h3>jay tiwari</h3>
+                        <p>Highly Recommended!
+Loved the services from by Chetna from ROAD TO TRIPS. They were available 24/7 for assistance. Kashmir is the beautiful place and one must confirm the trip from a good agency to enjoy the trip hassle free.</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!--contact section-->
+    
+    <section class="contact" id="contact">
+        <h1 class="heading">
+            <span>c</span>
+            <span>o</span>
+            <span>n</span>
+            <span>t</span>
+            <span>a</span>
+            <span>c</span>
+            <span>t</span>
+        </h1>
+        <div class="row">
+            
+            <form action="contact" method="POST">
+                <div class="input-form">
+                    <div class="xyz">
+                        <div class="inputbox">
+                            <input class="inp" type="text" placeholder="name" name="name">
+                            <input class="inp" type="email" id="contact-id" name="email"  placeholder="email">
+                        </div>
+                        <div class="inputbox">
+                            <input class="inp" type="number" placeholder="Enter mobile number" name="mobile">
+                            <input class="inp" type="text" id="contact-id"     placeholder="subject" name="subject">
+                        </div>
+                    </div>
+                    <div class="inputbox"> 
+                        <textarea class="inp" placeholder="message" name="message" id="" cols="90" rows="10" ></textarea><br>
+                        <div class="class-btn">
+                            <input type="submit" class="btn inp" name="" id="contact-id" value="send message">
+                        </div>
+                    </div> 
+                </div>
+            </form>
+            
+        </div>
+    </section>
+    
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <script>
+        let searchbtn = document.querySelector('#search-btn');
+let searchbar = document.querySelector('.search-bar-container');
+let formbtn = document.querySelector('#login-btn');
+let loginform = document.querySelector('.login-form-container');
+let formclose = document.querySelector('#form-close');
+let menubar = document.querySelector('#menu-bar');
+let navbar = document.querySelector('.navbar');
+let videobtn = document.querySelectorAll('.vid-btn');
+let registerbtn = document.querySelector('#register-btn');
+let registeform = document.querySelector('.register-form-container');
+
+  
+window.onscroll = () =>{
+    searchbtn.classList.remove('fa-times');
+    searchbar.classList.remove('active');
+    menubar.classList.remove('fa-times');
+    navbar.classList.remove('active');
+    loginform.classList.remove('active');
+}
+
+menubar.addEventListener('click', () =>{
+    menubar.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+});
+
+searchbtn.addEventListener('click', () =>{
+    searchbtn.classList.toggle('fa-times');
+    searchbar.classList.toggle('active');
+});
+
+formbtn.addEventListener('click', () =>{
+    loginform.classList.add('active');
+});
+
+formclose.addEventListener('click', () =>{
+    loginform.classList.remove('active');
+});
+
+registerbtn.addEventListener('click',() =>{
+    registeform.classList.add('active');
+    //alert("Hello world");
+});
+
+videobtn.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        document.querySelector('.controls .active').classList.remove('active');
+        btn.classList.add('active');
+        let src = btn.getAttribute('data-src');
+        document.querySelector('#video-slider').src = src;
+    });
+});
+
+var swiper = new Swiper(".review-slider",{
+    spaceBetween :30,
+    loop :true,
+    autoplay: {
+        delay : 2500,
+        disableOnInteraction: false,
+    },
+    breakpoints:{
+        640:{
+            slidesPerView:1,
+        },
+        768:{
+            slidesPerView:2,
+        },
+        1024:{
+            slidesPerView:3,
+        },
+    },
+    
+});
+
+ 
+function booknow(val){
+    console.log(val + "this is the name of city")
+    document.getElementById("whereto").value=val;
+}
+
+let message1=document.getElementById("dname").value;
+console.log(message1);
+    </script>
+</body>
+
+</html>
